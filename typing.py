@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-#oke
+#oke oke
 PARAGRAPHS = [
     "Their politician was, in this moment, a notour paperback. The first armless grouse is, in its own way, a gear.",
     "Authors often misinterpret the lettuce as a folklore rabbi, when in actuality it feels more like an uncursed bacon.",
