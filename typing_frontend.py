@@ -11,6 +11,7 @@ class SpeedTypingGame:
         self.root.title("Speed Typing Game")
         self.root.geometry("700x500")
         self.root.configure(bg=BG_COLOR)
+
         self.backend = TypingGameBackend()
         self.timer_id = None
         self.active_mode_button = None
@@ -18,17 +19,19 @@ class SpeedTypingGame:
         mode_frame = tk.Frame(self.root, bg=BG_COLOR)
         mode_frame.pack(pady=10)
 
-        self.mode_buttons = {}    
-        modes = [("time", 60), ("words", 30), ("words", 40), ("words", 50)]
+        self.mode_buttons = {}
+        modes = [("time", 60), ("words", 30), ("words", 40), ("words", 50), ("words", 100)]
         for mode, val in modes:
             text = f"{val} words" if mode == "words" else "time"
             key = val if mode == "words" else "time"
-            btn = tk.Button(mode_frame, text=text, font=FONT_SMALL, bg=BG_COLOR, fg=TEXT_SUB, bd=0, relief="flat")
+            btn = tk.Button(mode_frame, text=text, font=FONT_SMALL, bg=BG_COLOR, fg=TEXT_SUB, bd=0, relief="flat",
+                            activeforeground=TEXT_MAIN, activebackground=BG_COLOR,
+                            command=lambda m=mode, v=val: self.set_mode(m, v))
             btn.pack(side="left", padx=10)
-            btn.config(command=lambda m=mode, v=val, b=btn: self.set_mode_with_button(m, v, b))
             self.mode_buttons[key] = btn
 
-        self.text_display = tk.Text(self.root, font=FONT_MAIN, bg=BG_COLOR, fg=TEXT_SUB, wrap="word", height=8, bd=0, highlightthickness=0)
+        self.text_display = tk.Text(self.root, font=FONT_MAIN, bg=BG_COLOR, fg=TEXT_SUB,
+                                    wrap="word", height=8, bd=0, highlightthickness=0)
         self.text_display.pack(pady=30, padx=30)
         self.text_display.tag_config("correct", foreground=TEXT_MAIN)
         self.text_display.tag_config("incorrect", foreground=ERROR_COLOR, background=ERROR_BG)
@@ -52,7 +55,7 @@ class SpeedTypingGame:
 
         tk.Button(self.root, text="Try Again", font=FONT_STATS, bg=BG_COLOR, fg=ACCENT_COLOR, bd=0, relief="flat", command=self.reset_game).pack(pady=10)
 
-        self.set_mode_with_button("time", 60, None)
+        self.set_mode("time", 60)
         self.input_entry.focus()
 
     def load_paragraph(self):
@@ -64,6 +67,7 @@ class SpeedTypingGame:
         self.text_display.tag_add("active", "1.0", "1.1")
 
     def on_key_press(self, event):
+        # Mengirim input ke backend dan menerima status untuk diperbarui di UI
         result = self.backend.process_key(event.char, event.keysym)
         if result.get("game_over") or result.get("ignored"):
             return
@@ -87,6 +91,7 @@ class SpeedTypingGame:
             if result["correct"]:
                 self.text_display.tag_add("correct", f"1.{idx}")
             else:
+                self.backend.mistakes += 1  # This line may be redundant, mistakes handled in backend
                 self.text_display.tag_add("incorrect", f"1.{idx}")
             if idx + 1 < len(self.current_text):
                 self.text_display.tag_add("active", f"1.{idx + 1}")
@@ -116,14 +121,11 @@ class SpeedTypingGame:
             self.root.after_cancel(self.timer_id)
         self.backend.timer_running = False
         self.update_stats()
-
-    def set_mode_with_button(self, mode, value, button):
+##__________________buat konekin____________________##
+    def set_mode(self, mode, value):
         if self.active_mode_button:
             self.active_mode_button.config(fg=TEXT_SUB)
-        if button:
-            self.active_mode_button = button
-        else:
-            self.active_mode_button = self.mode_buttons.get(value if mode == "words" else "time")
+        self.active_mode_button = self.mode_buttons.get(value if mode == "words" else "time")
         if self.active_mode_button:
             self.active_mode_button.config(fg=TEXT_MAIN)
 
