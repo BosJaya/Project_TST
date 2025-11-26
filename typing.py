@@ -29,7 +29,7 @@ class SpeedTypingGame:
         mode_frame.pack(pady=10)
         
         self.mode_buttons = {}
-        modes = [("time", 60), ("words", 30), ("words", 40), ("words", 50)]
+        modes = [("time", 60), ("words", 30), ("words", 40), ("words", 50),("words", 100)]
         for mode, val in modes:
             text = f"{val} words" if mode == "words" else "time"
             key = val if mode == "words" else "time"
@@ -100,10 +100,10 @@ class SpeedTypingGame:
             self.char_index += 1
             if self.char_index < len(self.current_text):
                 self.text_display.tag_add("active", f"1.{self.char_index + 1}")
-            else: # Teks selesai
+            else:
                 self.end_game()
         self.update_stats()
-
+###_______________________________________________________________________Bikin Statistiknya____________________________________________________________###
     def update_timer(self):
         self.time_left += -1 if self.game_mode == "time" else 1
         self.update_stats()
@@ -154,3 +154,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = SpeedTypingGame(root)
     root.mainloop()
+
+
+
