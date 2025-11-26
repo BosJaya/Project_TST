@@ -18,8 +18,8 @@ class SpeedTypingGame:
         mode_frame = tk.Frame(self.root, bg=BG_COLOR)
         mode_frame.pack(pady=10)
 
-        self.mode_buttons = {}
-        modes = [("time", 60), ("words", 30), ("words", 40), ("words", 50), ("words", 100), ("words", 900)]
+        self.mode_buttons = {}    
+        modes = [("time", 60), ("words", 30), ("words", 40), ("words", 50)]
         for mode, val in modes:
             text = f"{val} words" if mode == "words" else "time"
             key = val if mode == "words" else "time"

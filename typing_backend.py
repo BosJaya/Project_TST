@@ -44,9 +44,9 @@ class TypingGameBackend:
     def load_paragraph(self):
         if self.game_mode == "time":
             self.current_text = ' '.join(random.sample(ALL_WORDS, min(50, len(ALL_WORDS))))
-        else:
-            self.current_text = ' '.join(random.sample(ALL_WORDS, min(self.word_count, len(ALL_WORDS))))
-
+        else: 
+            self.current_text = ' '.join(random.sample(ALL_WORDS, self.word_count))
+            
     def process_key(self, char, keysym):
         if (self.game_mode == "time" and self.time_left <= 0) or (self.game_mode == "words" and self.char_index >= len(self.current_text)):
             return {"game_over": True}
