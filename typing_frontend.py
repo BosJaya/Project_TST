@@ -123,6 +123,7 @@ class SpeedTypingGame:
             self.root.after_cancel(self.timer_id)
         self.backend.timer_running = False
         self.update_stats()
+        self.input_entry.focus_set()
 
     def set_mode(self, mode, value):
         if self.active_mode_button:
