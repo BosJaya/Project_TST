@@ -37,7 +37,17 @@ class SpeedTypingGame:
         self.text_display.tag_config("incorrect", foreground=ERROR_COLOR, background=ERROR_BG)
         self.text_display.tag_config("active", underline=True)
 
-        self.input_entry = tk.Entry(self.root, bd=0, highlightthickness=0, bg=BG_COLOR, fg=BG_COLOR, insertbackground=BG_COLOR)
+        self.input_entry = tk.Entry(
+        self.root,
+        bd=0,
+        highlightthickness=0,
+        bg=BG_COLOR,
+        fg=BG_COLOR,
+        insertbackground=BG_COLOR,
+        disabledbackground=BG_COLOR,
+        disabledforeground=BG_COLOR,
+        )
+        
         self.input_entry.bind("<Key>", self.on_key_press)
         self.input_entry.pack()
         self.root.bind("<Button-1>", lambda _: self.input_entry.focus())
@@ -55,7 +65,7 @@ class SpeedTypingGame:
 
         self.retry_btn = tk.Button(self.root, text="Try Again", font=FONT_STATS, bg=BG_COLOR, fg=ACCENT_COLOR, bd=0, relief="flat", command=self.reset_game)
         self.retry_btn.pack(pady=10)
-        self.retry_btn.bind("<Return>", lambda event: self.reset_game())
+        self.retry_btn.bind("<Return>", lambda event : self.reset_game())
         
         self.set_mode("time", 60)
         self.input_entry.focus()
@@ -69,16 +79,16 @@ class SpeedTypingGame:
         self.text_display.tag_add("active", "1.0", "1.1")
 
     def on_key_press(self, event):
-        # Mengirim input ke backend dan menerima status untuk diperbarui di UI
         result = self.backend.process_key(event.char, event.keysym)
-        if result.get("game_over") or result.get("ignored"):
+        if result.get("ignored"):
             return
-
+        if result.get("game_over") and "action" not in result:
+            self.end_game()
+            return
         if not self.backend.timer_running:
             self.backend.timer_running = True
             self.update_timer()
-
-        if result["action"] == "backspace":
+        if result.get("action") == "backspace":
             idx = result["index"]
             self.text_display.tag_remove("active", f"1.{idx+1}")
             if "incorrect" in self.text_display.tag_names(f"1.{idx}"):
@@ -86,19 +96,49 @@ class SpeedTypingGame:
             for tag in ("correct", "incorrect"):
                 self.text_display.tag_remove(tag, f"1.{idx}")
             self.text_display.tag_add("active", f"1.{idx + 1}")
-
-        elif result["action"] == "key_press":
+        elif result.get("action") == "key_press":
             idx = result["index"]
             self.text_display.tag_remove("active", f"1.{idx}")
             if result["correct"]:
                 self.text_display.tag_add("correct", f"1.{idx}")
             else:
-                self.backend.mistakes += 1  # This line may be redundant, mistakes handled in backend
                 self.text_display.tag_add("incorrect", f"1.{idx}")
+                
             if idx + 1 < len(self.current_text):
                 self.text_display.tag_add("active", f"1.{idx + 1}")
-            else:
-                self.end_game()
+    
+        if result.get("game_over"):
+            self.end_game()
+    
+        
+        # if result.get("game_over") or result.get("ignored"):
+        #     return
+
+        # if not self.backend.timer_running:
+        #     self.backend.timer_running = True
+        #     self.update_timer()
+
+        # if result["action"] == "backspace":
+        #     idx = result["index"]
+        #     self.text_display.tag_remove("active", f"1.{idx+1}")
+        #     if "incorrect" in self.text_display.tag_names(f"1.{idx}"):
+        #         self.backend.mistakes -= 1
+        #     for tag in ("correct", "incorrect"):
+        #         self.text_display.tag_remove(tag, f"1.{idx}")
+        #     self.text_display.tag_add("active", f"1.{idx + 1}")
+
+        # elif result["action"] == "key_press":
+        #     idx = result["index"]
+        #     self.text_display.tag_remove("active", f"1.{idx}")
+        #     if result["correct"]:
+        #         self.text_display.tag_add("correct", f"1.{idx}")
+        #     else:
+        #         self.backend.mistakes += 1  # This line may be redundant, mistakes handled in backend
+        #         self.text_display.tag_add("incorrect", f"1.{idx}")
+        #     if idx + 1 < len(self.current_text):
+        #         self.text_display.tag_add("active", f"1.{idx + 1}")
+        #     else:
+        #         self.end_game()
 
         self.update_stats()
 
@@ -118,6 +158,7 @@ class SpeedTypingGame:
         self.stat_labels["Time:"].config(text=f"{stats['TimeLeft']}s")
 
     def end_game(self):
+        self.input_entry.delete(0, tk.END)
         self.input_entry.config(state="disabled")
         if self.timer_id:
             self.root.after_cancel(self.timer_id)
