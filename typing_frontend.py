@@ -53,8 +53,10 @@ class SpeedTypingGame:
             lbl_val.pack()
             self.stat_labels[title] = lbl_val
 
-        tk.Button(self.root, text="Try Again", font=FONT_STATS, bg=BG_COLOR, fg=ACCENT_COLOR, bd=0, relief="flat", command=self.reset_game).pack(pady=10)
-
+        self.retry_btn = tk.Button(self.root, text="Try Again", font=FONT_STATS, bg=BG_COLOR, fg=ACCENT_COLOR, bd=0, relief="flat", command=self.reset_game)
+        self.retry_btn.pack(pady=10)
+        self.retry_btn.bind("<Return>", lambda event: self.reset_game())
+        
         self.set_mode("time", 60)
         self.input_entry.focus()
 
@@ -121,7 +123,7 @@ class SpeedTypingGame:
             self.root.after_cancel(self.timer_id)
         self.backend.timer_running = False
         self.update_stats()
-##__________________buat konekin____________________##
+
     def set_mode(self, mode, value):
         if self.active_mode_button:
             self.active_mode_button.config(fg=TEXT_SUB)
@@ -140,6 +142,7 @@ class SpeedTypingGame:
         self.input_entry.delete(0, tk.END)
         self.update_stats()
         self.load_paragraph()
+        self.input_entry.focus_set()
 
 if __name__ == "__main__":
     root = tk.Tk()

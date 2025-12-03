@@ -7,7 +7,10 @@ PARAGRAPHS = [
     "What we don't know for sure is whether or not a pig of the coast is assumed to be a hardback pilot.",
     "An aunt is a bassoon from the right perspective. As far as we can estimate, some posit the melic myanmar to be less than kutcha.",
 ]
-ALL_WORDS = ' '.join(PARAGRAPHS).split()
+# ALL_WORDS = ' '.join(PARAGRAPHS).split()
+raw_text = ' '.join(PARAGRAPHS)
+clean_text = raw_text.replace('.', '').replace(',', '')
+ALL_WORDS = clean_text.split()
 
 class TypingGameBackend:
     def __init__(self):
@@ -41,7 +44,7 @@ class TypingGameBackend:
 
     def load_paragraph(self):
         if self.game_mode == "time":
-            self.current_text = random.choice(PARAGRAPHS)
+            self.current_text = " ".join(random.choices(ALL_WORDS, k=300))
         else:
             self.current_text = " ".join(random.sample(ALL_WORDS, min(self.word_count, len(ALL_WORDS))))
 
