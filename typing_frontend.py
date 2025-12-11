@@ -3,7 +3,6 @@ from typing_backend import TypingGameBackend
 from PIL import Image, ImageTk, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True 
 
-
 BG_COLOR, TEXT_MAIN, TEXT_SUB = "#FFFFFF", "#3F3C3C", "#828282" 
 BOX_BG_COLOR = "#FFFFFF" 
 WALLPAPER_GAP_COLOR = "#227399" 
