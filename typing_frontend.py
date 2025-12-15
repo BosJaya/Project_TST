@@ -22,7 +22,8 @@ class SpeedTypingGame:
         self.current_text = "" 
         
         self.keyboard_image_ref = None 
-        self.wallpaper_image_ref = None 
+        self.wallpaper_image_ref = None
+        self.tab_pressed = False 
         
         # wp (layer paling blkg)
         self.wallpaper_canvas = tk.Canvas(root, highlightthickness=0, bg=WALLPAPER_GAP_COLOR)
@@ -102,6 +103,8 @@ class SpeedTypingGame:
         insertbackground=BOX_BG_COLOR, disabledbackground=BOX_BG_COLOR, disabledforeground=BOX_BG_COLOR,
         )
         self.input_entry.bind("<Key>", self.on_key_press)
+        self.input_entry.bind("<Tab>", self.on_tab_press)
+        self.input_entry.bind("<Return>", self.on_return_press)
         self.input_entry.pack() 
         self.root.bind("<Button-1>", lambda _: self.input_entry.focus())
 
@@ -127,9 +130,6 @@ class SpeedTypingGame:
         self.keyboard_canvas = tk.Canvas(keyboard_frame, width=700, height=200, bg=BOX_BG_COLOR, highlightthickness=0) 
         self.keyboard_canvas.pack(pady=15, padx=10) 
         self.load_keyboard_visualizer() 
-
-        # Ganti ke Tab+Enter
-        self.root.bind("<Return>", lambda event : self.reset_game())
         
         # Wallpaper
         self.root.update_idletasks() 
@@ -245,6 +245,19 @@ class SpeedTypingGame:
 
     def highlight_key(self):
         pass
+
+    def on_tab_press(self, event):
+        """Mendeteksi Tab untuk reset game"""
+        self.tab_pressed = True
+        return "break"
+    
+    def on_return_press(self, event):
+        """Reset game hanya jika Tab ditekan sebelumnya"""
+        if self.tab_pressed:
+            self.tab_pressed = False
+            self.reset_game()
+        # Jika Tab tidak ditekan, abaikan Return
+        return "break"
 
 
     def on_key_press(self, event):

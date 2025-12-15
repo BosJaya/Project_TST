@@ -22,9 +22,7 @@ HOME_ROW_PATTERNS = [c * 3 + ' ' for c in HOME_ROW_CHARS.split()]
 TOP_ROW_PATTERNS = [c * 3 + ' ' for c in TOP_ROW_CHARS.split()]
 BOTTOM_ROW_PATTERNS = [c * 3 + ' ' for c in BOTTOM_ROW_CHARS.split()]
 
-
 ALL_WORDS = ' '.join(PARAGRAPHS).replace('.', '').replace(',', '').split()
-
 
 class TypingGameBackend:
     def __init__(self):
@@ -89,7 +87,7 @@ class TypingGameBackend:
         if (self.game_over_flag) and keysym != "Return":
             return {"game_over": True}
 
-        if keysym in ("Shift_L", "Shift_R", "Control_L", "Alt_L", "Caps_Lock", "Return"):
+        if keysym in ("Caps_Lock",):
             return {"ignored": True}
         
         if keysym == "BackSpace":
