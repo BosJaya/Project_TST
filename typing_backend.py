@@ -2,7 +2,7 @@ import random
 import time
 
 PARAGRAPHS = [
-    "pemanasan global merupakan peningkatan suhu rata-rata di permukaan bumi yang terjadi akibat penumpukan gas rumah kaca di atmosfer. perubahan iklim ini membawa dampak serius bagi kelangsungan hidup manusia, hewan, dan tumbuhan. solusi utama untuk mengatasi masalah ini adalah dengan mengurangi emisi karbon secara global.",
+    "pemanasan global merupakan peningkatan suhu rata rata di permukaan bumi yang terjadi akibat penumpukan gas rumah kaca di atmosfer. perubahan iklim ini membawa dampak serius bagi kelangsungan hidup manusia, hewan, dan tumbuhan. solusi utama untuk mengatasi masalah ini adalah dengan mengurangi emisi karbon secara global.",
     "batik adalah warisan budaya tak benda dari Indonesia yang diakui oleh unesco. setiap motif batik memiliki filosofi dan sejarahnya sendiri, yang seringkali merefleksikan kearifan lokal daerah asalnya. proses pembuatan batik, terutama batik tulis, membutuhkan ketelitian dan waktu yang lama.",
     "kopi Indonesia telah dikenal luas di seluruh dunia karena keunikan rasa dan varietasnya yang beragam. Mulai dari Gayo Aceh hingga Kopi Toraja Sulawesi, setiap daerah menawarkan karakteristik rasa yang khas. aktivitas minum kopi kini bukan hanya sekadar kebiasaan, tetapi telah menjadi bagian dari gaya hidup modern.",
     "literasi digital adalah kemampuan untuk menemukan, mengevaluasi, dan mengomunikasikan informasi menggunakan teknologi digital. keterampilan ini sangat penting di era informasi saat ini. penguasaan literasi digital membantu individu berpartisipasi penuh dalam masyarakat yang semakin terhubung.",
