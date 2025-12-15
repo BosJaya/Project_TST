@@ -141,7 +141,7 @@ class SpeedTypingGame:
     def load_wallpaper(self):
         self.wallpaper_canvas.delete("all")
         try:
-            pil_img = Image.open("wallpaper1.png")
+            pil_img = Image.open("wallpaper2.png")
             self.original_wallpaper_size = pil_img.size
             self.resize_wallpaper(self.root.winfo_width(), self.root.winfo_height())
             
@@ -166,7 +166,7 @@ class SpeedTypingGame:
         new_height = int(original_height * resize_ratio)
 
         try:
-            pil_img = Image.open("wallpaper1.png")
+            pil_img = Image.open("wallpaper2.png")
             resized_img = pil_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
             self.wallpaper_image_ref = ImageTk.PhotoImage(resized_img)
             
@@ -222,7 +222,7 @@ class SpeedTypingGame:
     def load_keyboard_visualizer(self):
         self.keyboard_canvas.delete("all")
         try:
-            pil_img = Image.open("Image1.png")
+            pil_img = Image.open("Image2.jpg")
             canvas_width = 700 
             original_width, original_height = pil_img.size
             new_height = int(original_height * (canvas_width / original_width))
