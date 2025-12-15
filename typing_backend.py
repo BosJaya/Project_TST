@@ -2,11 +2,11 @@ import random
 import time
 
 PARAGRAPHS = [
-    "Pemanasan global merupakan peningkatan suhu rata-rata di permukaan bumi yang terjadi akibat penumpukan gas rumah kaca di atmosfer. Perubahan iklim ini membawa dampak serius bagi kelangsungan hidup manusia, hewan, dan tumbuhan. Solusi utama untuk mengatasi masalah ini adalah dengan mengurangi emisi karbon secara global.",
-    "Batik adalah warisan budaya tak benda dari Indonesia yang diakui oleh UNESCO. Setiap motif batik memiliki filosofi dan sejarahnya sendiri, yang seringkali merefleksikan kearifan lokal daerah asalnya. Proses pembuatan batik, terutama batik tulis, membutuhkan ketelitian dan waktu yang lama.",
-    "Kopi Indonesia telah dikenal luas di seluruh dunia karena keunikan rasa dan varietasnya yang beragam. Mulai dari Gayo Aceh hingga Kopi Toraja Sulawesi, setiap daerah menawarkan karakteristik rasa yang khas. Aktivitas minum kopi kini bukan hanya sekadar kebiasaan, tetapi telah menjadi bagian dari gaya hidup modern.",
-    "Literasi digital adalah kemampuan untuk menemukan, mengevaluasi, dan mengomunikasikan informasi menggunakan teknologi digital. Keterampilan ini sangat penting di era informasi saat ini. Penguasaan literasi digital membantu individu berpartisipasi penuh dalam masyarakat yang semakin terhubung.",
-    "Revolusi Industri ditandai dengan integrasi teknologi siber dan fisik, termasuk kecerdasan buatan, IoT, dan komputasi awan. Transformasi ini mengubah cara kita bekerja, berinteraksi, dan hidup, menuntut adaptasi cepat dari semua sektor industri dan pendidikan di seluruh dunia."
+    "pemanasan global merupakan peningkatan suhu rata-rata di permukaan bumi yang terjadi akibat penumpukan gas rumah kaca di atmosfer. perubahan iklim ini membawa dampak serius bagi kelangsungan hidup manusia, hewan, dan tumbuhan. solusi utama untuk mengatasi masalah ini adalah dengan mengurangi emisi karbon secara global.",
+    "batik adalah warisan budaya tak benda dari Indonesia yang diakui oleh unesco. setiap motif batik memiliki filosofi dan sejarahnya sendiri, yang seringkali merefleksikan kearifan lokal daerah asalnya. proses pembuatan batik, terutama batik tulis, membutuhkan ketelitian dan waktu yang lama.",
+    "kopi Indonesia telah dikenal luas di seluruh dunia karena keunikan rasa dan varietasnya yang beragam. Mulai dari Gayo Aceh hingga Kopi Toraja Sulawesi, setiap daerah menawarkan karakteristik rasa yang khas. aktivitas minum kopi kini bukan hanya sekadar kebiasaan, tetapi telah menjadi bagian dari gaya hidup modern.",
+    "literasi digital adalah kemampuan untuk menemukan, mengevaluasi, dan mengomunikasikan informasi menggunakan teknologi digital. keterampilan ini sangat penting di era informasi saat ini. penguasaan literasi digital membantu individu berpartisipasi penuh dalam masyarakat yang semakin terhubung.",
+    "revolusi industri ditandai dengan integrasi teknologi siber dan fisik, termasuk kecerdasan buatan iot dan komputasi awan. transformasi ini mengubah cara kita bekerja, berinteraksi, dan hidup, menuntut adaptasi cepat dari semua sektor industri dan pendidikan di seluruh dunia."
 ]
 
 DRILL_CHARS = "a s d f j k l ; q w e r t y u i o p z x c v b n m , . /"
