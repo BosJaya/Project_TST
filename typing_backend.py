@@ -1,6 +1,6 @@
 import random
 import time
-#oi
+
 PARAGRAPHS = [
     "Pemanasan global merupakan peningkatan suhu rata-rata di permukaan bumi yang terjadi akibat penumpukan gas rumah kaca di atmosfer. Perubahan iklim ini membawa dampak serius bagi kelangsungan hidup manusia, hewan, dan tumbuhan. Solusi utama untuk mengatasi masalah ini adalah dengan mengurangi emisi karbon secara global.",
     "Batik adalah warisan budaya tak benda dari Indonesia yang diakui oleh UNESCO. Setiap motif batik memiliki filosofi dan sejarahnya sendiri, yang seringkali merefleksikan kearifan lokal daerah asalnya. Proses pembuatan batik, terutama batik tulis, membutuhkan ketelitian dan waktu yang lama.",
@@ -9,11 +9,9 @@ PARAGRAPHS = [
     "Revolusi Industri ditandai dengan integrasi teknologi siber dan fisik, termasuk kecerdasan buatan, IoT, dan komputasi awan. Transformasi ini mengubah cara kita bekerja, berinteraksi, dan hidup, menuntut adaptasi cepat dari semua sektor industri dan pendidikan di seluruh dunia."
 ]
 
-# Data untuk Latihan Semua Huruf (A-Z)
 DRILL_CHARS = "a s d f j k l ; q w e r t y u i o p z x c v b n m , . /"
 DRILL_PATTERNS = [c * 3 + ' ' for c in DRILL_CHARS.split()]
 
-# Data Drilling
 HOME_ROW_CHARS = "a s d f j k l ;"
 TOP_ROW_CHARS = "q w e r t y u i o p"
 BOTTOM_ROW_CHARS = "z x c v b n m , . /"
@@ -59,28 +57,21 @@ class TypingGameBackend:
         self.load_paragraph()
 
     def generate_drill_text(self, patterns):
-        """Membuat teks latihan dari daftar pola yang diberikan."""
         drill_text = "".join(random.choices(patterns, k=self.word_count * 3))
         return drill_text.strip()
         
     def load_paragraph(self):
         if self.game_mode == "time":
-            # Tes Kecepatan
             self.current_text = " ".join(random.choices(ALL_WORDS, k=300))
         elif self.game_mode == "drill":
-            # Latihan Semua Huruf
             self.current_text = self.generate_drill_text(DRILL_PATTERNS)
         elif self.game_mode == "home_row_drill":
-            # Latihan Baris Tengah
             self.current_text = self.generate_drill_text(HOME_ROW_PATTERNS)
         elif self.game_mode == "top_row_drill":
-            # Latihan Baris Atas
             self.current_text = self.generate_drill_text(TOP_ROW_PATTERNS)
         elif self.game_mode == "bottom_row_drill":
-            # Latihan Baris Bawah
             self.current_text = self.generate_drill_text(BOTTOM_ROW_PATTERNS)
         else:
-            # Buat acak
             self.current_text = " ".join(random.sample(ALL_WORDS, min(self.word_count, len(ALL_WORDS))))
 
     def process_key(self, char, keysym):
