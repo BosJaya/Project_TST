@@ -1,6 +1,6 @@
 import random
 import time
-
+#oi
 PARAGRAPHS = [
     "Pemanasan global merupakan peningkatan suhu rata-rata di permukaan bumi yang terjadi akibat penumpukan gas rumah kaca di atmosfer. Perubahan iklim ini membawa dampak serius bagi kelangsungan hidup manusia, hewan, dan tumbuhan. Solusi utama untuk mengatasi masalah ini adalah dengan mengurangi emisi karbon secara global.",
     "Batik adalah warisan budaya tak benda dari Indonesia yang diakui oleh UNESCO. Setiap motif batik memiliki filosofi dan sejarahnya sendiri, yang seringkali merefleksikan kearifan lokal daerah asalnya. Proses pembuatan batik, terutama batik tulis, membutuhkan ketelitian dan waktu yang lama.",
