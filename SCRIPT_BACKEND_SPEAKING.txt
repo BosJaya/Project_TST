@@ -1,8 +1,3 @@
-================================================================================
-SCRIPT PRESENTASI BACKEND - SPEAKING VERSION
-(Versi untuk dibaca/diucapkan - lebih natural dan conversational)
-Durasi: ~10-15 menit
-================================================================================
 
 ═══════════════════════════════════════════════════════════════════════════════
 PEMBUKAAN
@@ -16,15 +11,11 @@ itu hanya display. Tapi semua perhitungan, logic, dan cara kerjanya, itu semua
 ada di backend. Kalo frontend adalah tokonya, backend adalah gudangnya.
 
 Saya pakai satu class besar yang namanya TypingGameBackend. Semua method dan 
-attribute ada di sini. Mari kita bahas satu per satu."
-
-[TUNJUKKAN FILE typing_backend.py]
+attribute ada di sini.
 
 ═══════════════════════════════════════════════════════════════════════════════
 DATA & SETUP
 ═══════════════════════════════════════════════════════════════════════════════
-
-"Pertama, kita lihat data yang ada di backend ini.
 
 Ada PARAGRAPHS. Ini adalah kumpulan 5 paragraf panjang yang semuanya 
 bahasa Indonesia. Mulai dari pemanasan global, batik, kopi, literasi digital, 
@@ -49,15 +40,6 @@ Terus ada ALL_WORDS. Ini adalah semua kata dari semua paragraphs yang sudah
 digabung menjadi satu array. Soalnya nanti kalau tes kecepatan, kita perlu 
 random pilih kata dari sini.
 
-Sekarang, class TypingGameBackend ini punya beberapa attribute yang penting:
-- game_mode: Tipe permainan (time atau drill)
-- char_index: Karakter mana sekarang yang lagi kita ketik (index)
-- mistakes: Berapa banyak kesalahan sudah terjadi
-- timer_running: Apakah timer masih jalan atau gak
-- current_text: Teks apa yang harus diketik sekarang
-- game_over_flag: Apakah permainan sudah selesai atau belum
-
-Semua ini akan diupdate seiring permainan berjalan."
 
 ═══════════════════════════════════════════════════════════════════════════════
 METHOD 1: SET_MODE
@@ -426,33 +408,7 @@ kalau selesai, get_stats() → display result.
 
 Simple, kan?"
 
-═══════════════════════════════════════════════════════════════════════════════
-KEUNIKAN & DESIGN
-═══════════════════════════════════════════════════════════════════════════════
 
-"Ada beberapa keunikan dalam design backend ini.
-
-PERTAMA: TWO MODES
-Backend support dua mode yang completely berbeda. Time mode adalah countdown 
-(user lawan jam). Drill mode adalah elapsed (user focus ke akurasi, bukan waktu). 
-Tapi perhitungan WPM tetap sama untuk keduanya. Ini fleksibel banget.
-
-KEDUA: FLEXIBLE PATTERNS
-Untuk drill, kita bisa custom patterns per baris keyboard. Ini membantu user 
-focus ke tombol-tombol yang lemah. Misalnya, kalau user lemah di baris atas, 
-dia bisa latihan cuma baris atas aja.
-
-KETIGA: POSITIVE WPM
-Kita selalu hitung max(0, wpm), jadi WPM tidak akan negative. Ini masuk akal, 
-soalnya user tidak mungkin punya negative kecepatan.
-
-KEEMPAT: SEPARATION OF CONCERNS
-Backend ini hanya handle logic. Frontend handle display. Backend tidak perlu 
-tahu tentang warna, layout, atau apapun tentang UI. Clean banget.
-
-KELIMA: STATEFUL
-Semua state permainan disimpan di backend. Kalau ada bug, kita bisa inspect 
-state ini dan debug dengan mudah."
 
 ═══════════════════════════════════════════════════════════════════════════════
 CLOSING
@@ -463,54 +419,8 @@ CLOSING
 - Sederhana tapi powerful
 - Support multiple modes
 - Perhitungan akurat
-- Modular dan maintainable
 
 Setiap method punya job yang jelas. process_key handle input, update_timer handle 
 waktu, get_stats handle perhitungan, dll.
 
-Ada pertanyaan tentang bagian backend?"
 
-═══════════════════════════════════════════════════════════════════════════════
-TIPS PRESENTASI SPEAKING:
-═══════════════════════════════════════════════════════════════════════════════
-
-1. INTONASI
-   - Jangan monoton, variasi intonasi
-   - Untuk poin penting, ngomongnya lebih lambat
-   - Untuk detail teknis, bisa lebih cepat
-
-2. PAUSE
-   - Setelah menjelaskan concept, beri jeda 2-3 detik
-   - Ini memberi kesempatan audience untuk mencerna
-   - Jangan langsung ngomong terus, gak ada napas
-
-3. CONTOH KONKRET
-   - Jangan cuma 'char_index ditambah 1'
-   - Bilang 'misalnya, user ada di karakter ke-5, terus user ketik, 
-     jadi char_index jadi 6'
-   - Ini lebih mudah dipahami
-
-4. GESTURE & POSTUR
-   - Berdiri tegak, jangan berdiri kaku
-   - Gesture natural saat explain (gerakan tangan sesuai topic)
-   - Lihat audience sesekali, jangan lihat slide terus
-
-5. VOLUME & KECEPATAN
-   - Berbicara cukup keras sehingga audience di belakang bisa dengar
-   - Jangan terlalu cepat, beri waktu audience untuk mencatat
-   - Jangan terlalu lambat, boring
-
-6. INTERAKSI
-   - Tanya audience: 'Ada yang familiar dengan WPM?'
-   - Beri kesempatan bertanya: 'Pertanyaan sebelum kita lanjut?'
-   - Ini membuat presentasi lebih engaging
-
-7. JIKA LUPA
-   - Chill, tidak perlu panik
-   - 'Eh, tunggu sebentar, saya lihat file-nya'
-   - Lihat script ini atau buka source code
-   - Lanjut aja
-
-GOOD LUCK! 🎤💪
-
-================================================================================
