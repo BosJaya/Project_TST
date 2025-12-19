@@ -368,3 +368,6 @@ if __name__ == "__main__":
     app = SpeedTypingGame(root)
     root.geometry("750x650")
     root.mainloop()
+    
+    
+    
